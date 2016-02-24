@@ -45,19 +45,28 @@
           $this->assertEquals("Andina", $result);
         }
 
-    //     function test_getId()
-    //     {
-    //         //Arrange
-    //         $cuisine_type = "Peruvian";
-    //         $id = 1;
-    //         $test_Restaurant = new Restaurant($cuisine_type, $id);
-    //
-    //         //Act
-    //         $result = $test_Restaurant->getId();
-    //
-    //         //Assert
-    //         $this->assertEquals(true, is_numeric($result));
-    //     }
+        function test_getId()
+        {
+            //Arrange
+            $cuisine_type = "Peruvian";
+            $id = null;
+            $test_cuisine = new Cuisine($cuisine_type, $id);
+            $test_cuisine->save();
+
+            $name = "Andina";
+            $website = "http://www.andinarestaurant.com/";
+            $phone_number = "(503)228-9535";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($name, $website, $phone_number, $id, $cuisine_id);
+            $test_restaurant->save();
+
+            //Act
+            $result = $test_restaurant->getId();
+
+
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
+        }
     //
     //     function test_save()
     //     {
