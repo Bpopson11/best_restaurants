@@ -75,14 +75,14 @@ class Restaurant
 
     static function getAll()
     {
-        $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants ;");
+        $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants;");
         $restaurants = array();
         foreach($returned_restaurants as $restaurant) {
             $name = $restaurant['name'];
             $website = $restaurant['website'];
             $phone_number = $restaurant['phone_number'];
             $id = $restaurant['id'];
-            $cuisine_id = $restaurant['type_id'];
+            $cuisine_id = $restaurant['cuisine_id'];
             $new_restaurant = new Restaurant($name, $website, $phone_number, $id, $cuisine_id);
             array_push($restaurants, $new_restaurant);
         }

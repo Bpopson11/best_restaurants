@@ -43,8 +43,8 @@ class Cuisine
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO cuisine (cuisine_type) VALUES ('{$this->getCuisine_type()}')");
-        $this->id= $GLOBALS['DB']->lastInsertId();
+        $GLOBALS['DB']->exec("INSERT INTO cuisines (cuisine_type) VALUES ('{$this->getCuisine_type()}')");
+        $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
     function update()
@@ -63,11 +63,11 @@ class Cuisine
     {
         $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisines;");
         $cuisines = array();
-        foreach($returned_cuisines as $cuisine_type) {
-            $name = $cuisine_type['name'];
-            $id = $cuisine_type['id'];
-            $new_cuisine_type = new Cuisine($name, $id);
-            array_push($cuisines, $new_cuisine_type);
+        foreach($returned_cuisines as $cuisine) {
+            $cuisine_type = $cuisine['cuisine_type'];
+            $id = $cuisine['id'];
+            $new_cuisine = new Cuisine($cuisine_type, $id);
+            array_push($cuisines, $new_cuisine);
         }
         return $cuisines;
     }

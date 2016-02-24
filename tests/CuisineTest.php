@@ -61,8 +61,10 @@
             //Arrange
             $cuisine_type = "Peruvian";
             $test_cuisine_type = new Cuisine($cuisine_type);
+
             //Act
             $result = $test_cuisine_type->getCuisine_type();
+
             //Assert
             $this->assertEquals($cuisine_type, $result);
         }
@@ -70,15 +72,68 @@
         function test_getId()
         {
             //Arrange
-            $cuisine_type = "Dog";
+            $cuisine_type = "Peruvian";
             $id = 1;
             $test_Cuisine = new Cuisine($cuisine_type, $id);
+
             //Act
             $result = $test_Cuisine->getId();
+
             //Assert
             $this->assertEquals(true, is_numeric($result));
         }
 
+        // function test_save()
+        // {
+        //     //Arrange
+        //     $cuisine_type = "Peruvian";
+        //     $test_Cuisine = new Cuisine($cuisine_type);
+        //     $test_Cuisine->save();
+        //
+        //
+        //     //Act
+        //     $result = Cuisine::getAll();
+        //     var_dump($result);
+        //
+        //     //Assert
+        //     $this->assertEquals($test_Cuisine, $result[0]);
+        // }
+
+        function test_getAll()
+        {
+            //Arrange
+            $cuisine_type = "Peruvian";
+            $cuisine_type2 = "French";
+            $test_Cuisine = new Cuisine($cuisine_type);
+            $test_Cuisine->save();
+            $test_Cuisine2 = new Cuisine($cuisine_type2);
+            $test_Cuisine2->save();
+
+            //Act
+            $result = Cuisine::getAll();
+
+            //Assert
+            $this->assertEquals([$test_Cuisine, $test_Cuisine2], $result);
+          }
+
+        function test_deleteAll()
+        {
+            //Arrange
+            $cuisine_type = "Peruvian";
+            $cuisine_type2 = "French";
+            $test_Cuisine = new Cuisine($cuisine_type);
+            $test_Cuisine->save();
+            $test_Cuisine2 = new Cuisine($cuisine_type2);
+            $test_Cuisine2->save();
+
+            //Act
+            Cuisine::deleteAll();
+            $result = Cuisine::getAll();
+
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
 
     }
 
