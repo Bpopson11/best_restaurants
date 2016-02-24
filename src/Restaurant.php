@@ -62,11 +62,6 @@ class Restaurant
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
-    function update()
-    {
-        $GLOBALS['DB']->exec("UPDATE restaurants SET name = '{$new_name}' WHERE id = {$this->getId()};");
-    }
-
     function delete()
     {
         $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
@@ -87,12 +82,19 @@ class Restaurant
             array_push($restaurants, $new_restaurant);
         }
         return $restaurants;
-      }
+    }
 
-        static function deleteAll()
-        {
-            $GLOBALS['DB']->exec("DELETE FROM restaurants;");
-        }
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM restaurants;");
+    }
+
+    function updateRestaurant($new_name)
+    {
+        $GLOBALS['DB']->exec("UPDATE restaurants SET name = '{$new_name}' WHERE id = {$this->getId()};");
+        $this->setName($new_name);
+    }
+
     }
 
 ?>

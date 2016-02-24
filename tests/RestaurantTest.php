@@ -155,6 +155,32 @@
             $this->assertEquals([], $result);
         }
 
+        function testUpdate()
+        {
+            //Arrange
+            $cuisine_type = "Peruvian";
+            $id = null;
+            $test_cuisine = new Cuisine($cuisine_type, $id);
+            $test_cuisine->save();
+
+            $test_cuisine_id = $test_cuisine->getId();
+
+
+            $name = "Andina";
+            $website = "http://www.andinarestaurant.com/";
+            $phone_number = "(503)228-9535";
+            $test_restaurant = new Restaurant($name, $website, $phone_number,  $id, $test_cuisine_id);
+            $test_restaurant->save();
+
+            $new_name = "Anidna";
+
+            //Act
+            $test_restaurant->updateRestaurant($new_name);
+
+            //Assert
+            $this->assertEquals("Anidna", $test_restaurant->getName());
+        }
+
     }
 
 ?>

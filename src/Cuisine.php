@@ -47,7 +47,7 @@ class Cuisine
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
-    function update()
+    function updateCuisine()
     {
         $GLOBALS['DB']->exec("UPDATE cuisines SET cuisine_type = '{$new_cuisine_type}' WHERE id = {$this->getId()};");
     }
