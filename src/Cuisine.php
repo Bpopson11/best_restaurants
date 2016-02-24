@@ -17,7 +17,7 @@ class Cuisine
 
     function getCuisine_type()
     {
-        return $this->name;
+        return $this->cuisine_type;
     }
 
     function getId()
@@ -32,10 +32,10 @@ class Cuisine
       foreach($returned_restaurants as $restaurant) {
           $name = $restaurant['name'];
           $website = $restaurant['website'];
-          $hours = $restaurant['hours'];          
+          $phone_number = $restaurant['phone_number'];
           $id = $restaurant['id'];
           $cuisine_id = $restaurant['cuisine_id'];
-          $new_restaurant = new Restaurant($cuisine_type, $id, $cuisine_id);
+          $new_restaurant = new Restaurant($name, $website, $phone_number, $id, $cuisine_id);
           array_push($restaurants, $new_restaurant);
         }
       return $restaurants;
@@ -55,7 +55,7 @@ class Cuisine
     function delete()
     {
       $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
-      $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_type_id = {$this->getId()};");
+      $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$this->getId()};");
     }
 
 
@@ -74,7 +74,7 @@ class Cuisine
 
     static function deleteAll()
     {
-      $GLOBALS['DB']->exec("DELETE FROM types;");
+      $GLOBALS['DB']->exec("DELETE FROM cuisines;");
     }
 
   }

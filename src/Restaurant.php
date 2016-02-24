@@ -3,15 +3,15 @@ class Restaurant
 {
     private $name;
     private $website;
-    private $hours;
+    private $phone_number;
     private $id;
     private $cuisine_id;
 
-    function __construct($name, $website, $hours, $id = null, $cuisine_id)
+    function __construct($name, $website, $phone_number, $id = null, $cuisine_id)
     {
         $this->name = $name;
         $this->website = $website;
-        $this->hours = $hours;
+        $this->phone_number = $phone_number;
         $this->id = $id;
         $this->cuisine_id = $cuisine_id;
     }
@@ -36,14 +36,14 @@ class Restaurant
         return $this->website;
     }
 
-    function setHours($new_hours)
+    function set_Phone_number($new_phone_number)
     {
-        $this->hours = (string) $new_hours;
+        $this->phone_number = (string) $new_phone_number;
     }
 
-    function getHours()
+    function getPhone_number()
     {
-        return $this->hours;
+        return $this->phone_number;
     }
 
     function getId()
@@ -57,10 +57,10 @@ class Restaurant
     }
 
     function save()
-        {
-            $GLOBALS['DB']->exec("INSERT INTO cuisines (name, website, hours, id, cuisine_id) VALUES ('{$this->getName()}', '{$this->getWebsite()}', '{$this->getHours()}', '{$this->getCuisine_Id()}');");
-            $this->id = $GLOBALS['DB']->lastInsertId();
-        }
+    {
+        $GLOBALS['DB']->exec("INSERT INTO restaurants (name, website, phone_number, cuisine_id) VALUES ('{$this->getName()}', '{$this->getWebsite()}', '{$this->getPhone_number()}', {$this->getCuisine_Id()});");
+        $this->id = $GLOBALS['DB']->lastInsertId();
+    }
 
     function update()
     {
@@ -70,7 +70,7 @@ class Restaurant
     function delete()
     {
       $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
-      $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_type_id = {$this->getId()};");
+      $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$this->getId()};");
     }
 
     static function getAll()
@@ -80,10 +80,10 @@ class Restaurant
         foreach($returned_restaurants as $restaurant) {
             $name = $restaurant['name'];
             $website = $restaurant['website'];
-            $hours = $restaurant['hours'];
+            $phone_number = $restaurant['phone_number'];
             $id = $restaurant['id'];
             $cuisine_id = $restaurant['type_id'];
-            $new_restaurant = new Restaurant($name, $website, $hours, $id, $cuisine_id);
+            $new_restaurant = new Restaurant($name, $website, $phone_number, $id, $cuisine_id);
             array_push($restaurants, $new_restaurant);
         }
         return $restaurants;
@@ -91,6 +91,6 @@ class Restaurant
 
         static function deleteAll()
         {
-            $GLOBALS['DB']->exec("DELETE FROM pets;");
+            $GLOBALS['DB']->exec("DELETE FROM restaurants;");
         }
     }
