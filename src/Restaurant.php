@@ -95,7 +95,12 @@ class Restaurant
         $this->setName($new_name);
     }
 
-    
+    function deleteRestaurant()
+    {
+      $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE id = {$this->getId()};");
+    }
+
+
 
 }
 

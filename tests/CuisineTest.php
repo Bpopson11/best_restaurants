@@ -148,12 +148,34 @@
             $test_cuisine2 = new Cuisine($cuisine_type2);
             $test_cuisine2->save();
 
-
             //Act
             $test_cuisine->deleteCuisine();
 
             //Assert
             $this->assertEquals([$test_cuisine2], Cuisine::getAll());
+        }
+
+        function testDeleteRestaurantsUnderCuisine()
+        {
+            //Arrange
+            $cuisine_type = "Peruvian";
+            $id = null;
+            $test_cuisine = new Cuisine($cuisine_type, $id);
+            $test_cuisine->save();
+
+            $name = "Andina";
+            $website = "http://www.andinarestaurant.com/";
+            $phone_number = "(503)228-9535";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($name, $website, $phone_number,  $id, $cuisine_id);
+            $test_restaurant->save();
+
+
+            //Act
+            $test_cuisine->deleteCuisine();
+
+            //Assert
+            $this->assertEquals([], Restaurant::getAll());
         }
 
         function testUpdateCuisine()
