@@ -67,22 +67,29 @@
             //Assert
             $this->assertEquals(true, is_numeric($result));
         }
-    //
-    //     function test_save()
-    //     {
-    //         //Arrange
-    //         $cuisine_type = "Peruvian";
-    //         $test_Restaurant = new Restaurant($cuisine_type);
-    //         $test_Restaurant->save();
-    //
-    //
-    //         //Act
-    //         $result = Restaurant::getAll();
-    //
-    //
-    //         //Assert
-    //         $this->assertEquals($test_Restaurant, $result[0]);
-    //     }
+
+        function test_save()
+        {
+          //Arrange
+          $cuisine_type = "Peruvian";
+          $id = null;
+          $test_cuisine = new Cuisine($cuisine_type, $id);
+          $test_cuisine->save();
+
+          $name = "Andina";
+          $website = "http://www.andinarestaurant.com/";
+          $phone_number = "(503)228-9535";
+          $cuisine_id = $test_cuisine->getId();
+          $test_restaurant = new Restaurant($name, $website, $phone_number, $id, $cuisine_id);
+
+            //Act
+            $test_restaurant->save();
+
+
+            //Assert
+            $result = Restaurant::getAll();
+            $this->assertEquals($test_restaurant, $result[0]);
+        }
     //
     //     function test_getAll()
     //     {
