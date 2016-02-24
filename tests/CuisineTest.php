@@ -56,6 +56,17 @@
 
         }
 
+        function test_getCuisine_type()
+        {
+            //Arrange
+            $cuisine_type = "Peruvian";
+            $test_cuisine_type = new Cuisine($cuisine_type);
+            //Act
+            $result = $test_cuisine_type->getCuisine_type();
+            //Assert
+            $this->assertEquals($cuisine_type, $result);
+        }
+
 
     }
 
