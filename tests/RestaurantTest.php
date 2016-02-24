@@ -90,24 +90,38 @@
             $result = Restaurant::getAll();
             $this->assertEquals($test_restaurant, $result[0]);
         }
-    //
-    //     function test_getAll()
-    //     {
-    //         //Arrange
-    //         $cuisine_type = "Peruvian";
-    //         $cuisine_type2 = "French";
-    //         $test_Restaurant = new Restaurant($cuisine_type);
-    //         $test_Restaurant->save();
-    //         $test_Restaurant2 = new Restaurant($cuisine_type2);
-    //         $test_Restaurant2->save();
-    //
-    //         //Act
-    //         $result = Restaurant::getAll();
-    //
-    //         //Assert
-    //         $this->assertEquals([$test_Restaurant, $test_Restaurant2], $result);
-    //       }
-    //
+
+        function test_getAll()
+        {
+          //Arrange
+            $cuisine_type = "Peruvian";
+            $id = null;
+            $test_cuisine = new Cuisine($cuisine_type, $id);
+            $test_cuisine->save();
+
+            $test_cuisine_id = $test_cuisine->getId();
+
+
+            $name = "Andina";
+            $website = "http://www.andinarestaurant.com/";
+            $phone_number = "(503)228-9535";
+            $test_restaurant = new Restaurant($name, $website, $phone_number,  $id, $test_cuisine_id);
+            $test_restaurant->save();
+
+
+            $name2 = "Las Primas";
+            $website2 = "http://www.lasprimaskitchen.com";
+            $phone_number2 = "(503)206-5790";
+            $test_restaurant2 = new Restaurant($name2, $website2, $phone_number2,  $id, $test_cuisine_id);
+            $test_restaurant2->save();
+
+            //Act
+            $result = Restaurant::getAll();
+
+            //Assert
+            $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
+          }
+
     //     function test_deleteAll()
     //     {
     //         //Arrange
