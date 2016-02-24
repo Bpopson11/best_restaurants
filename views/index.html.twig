@@ -1,10 +1,35 @@
 <html>
 <head>
-    <title></title>
+    {% include '/includes/head.html.twig' %}
+    <title>Food!</title>
 </head>
 <body>
+    <h1>We love food!</h1>
 
+    <p>Create a new cuisine type:</p>
 
+    <form action="/cuisines" method="post">
+        <label for="type">Cuisine type:</label>
+        <input id="type" name="type" type="text">
+
+        <button type="submit">Add cuisine</button>
+
+    </form>
+
+    {% if cuisines is not empty %}
+        <p>Here are all your cuisines</p>
+        <ul>
+              {% for cuisine in cuisines %}
+                  <li><a href="/cuisines/{{ cuisine.getId }}">{{ cuisine.getCuisine_type }}</a></li>
+              {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no cuisines yet!</p>
+    {% endif %}
+
+    <form action='/delete_cuisines' method='post'>
+        <button type='submit'>Clear</button>
+    </form>
 
 </body>
 </html>
