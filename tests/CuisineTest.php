@@ -83,21 +83,21 @@
             $this->assertEquals(true, is_numeric($result));
         }
 
-        // function test_save()
-        // {
-        //     //Arrange
-        //     $cuisine_type = "Peruvian";
-        //     $test_Cuisine = new Cuisine($cuisine_type);
-        //     $test_Cuisine->save();
-        //
-        //
-        //     //Act
-        //     $result = Cuisine::getAll();
-        //     var_dump($result);
-        //
-        //     //Assert
-        //     $this->assertEquals($test_Cuisine, $result[0]);
-        // }
+        function test_save()
+        {
+            //Arrange
+            $cuisine_type = "Peruvian";
+            $test_Cuisine = new Cuisine($cuisine_type);
+            $test_Cuisine->save();
+
+
+            //Act
+            $result = Cuisine::getAll();
+
+
+            //Assert
+            $this->assertEquals($test_Cuisine, $result[0]);
+        }
 
         function test_getAll()
         {
