@@ -135,6 +135,27 @@
             $this->assertEquals([], $result);
         }
 
+        function testDeleteCuisine()
+        {
+            //Arrange
+            $cuisine_type = "Peruvian";
+            $id = null;
+            $test_cuisine = new Cuisine($cuisine_type);
+            $test_cuisine->save();
+
+            $cuisine_type2 = "French";
+            $id = null;
+            $test_cuisine2 = new Cuisine($cuisine_type2);
+            $test_cuisine2->save();
+
+
+            //Act
+            $test_cuisine->deleteCuisine();
+
+            //Assert
+            $this->assertEquals([$test_cuisine2], Cuisine::getAll());
+        }
+
     }
 
 ?>

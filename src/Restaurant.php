@@ -95,6 +95,8 @@ class Restaurant
         $this->setName($new_name);
     }
 
-    }
+    
+
+}
 
 ?>
