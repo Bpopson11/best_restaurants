@@ -47,6 +47,19 @@ class Cuisine
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
+    static function findCuisine($search_id)
+    {
+        $found_cuisine = null;
+        $cuisines = Category::getAll();
+        foreach($cuisines as $cuisine) {
+            $cuisine_id = $cuisine->getId();
+            if ($cuisine_id == $search_id) {
+              $found_cuisine = $cuisine;
+            }
+        }
+        return $found_cuisine;
+    }
+
     function updateCuisine($new_cuisine_type)
     {
         $GLOBALS['DB']->exec("UPDATE cuisines SET cuisine_type = '{$new_cuisine_type}' WHERE id = {$this->getId()};");
@@ -58,7 +71,6 @@ class Cuisine
       $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
       $GLOBALS['DB']->exec("DELETE FROM restaurants WHERE cuisine_id = {$this->getId()};");
     }
-
 
     static function getAll()
     {

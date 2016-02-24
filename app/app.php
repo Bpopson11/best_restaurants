@@ -47,9 +47,9 @@
     });
 
     $app->patch("/cuisines/{id}", function($id) use ($app) {
-        $name = $_POST['name'];
+        $name = $_POST['cuisine_type'];
         $cuisine = Cuisine::find($id);
-        $cuisine->update($name);
+        $cuisine->update($cuisine_type);
         return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'tasks' => $cuisine->getRestaurants()));
     });
 
