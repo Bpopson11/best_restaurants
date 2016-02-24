@@ -17,8 +17,9 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
+
     $app->get("/", function() use ($app) {
-        return $app['twig']->render('index.html.twig');
+        return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
     });
 
     $app->get("/restaurants", function() use ($app) {
@@ -38,8 +39,10 @@
     $app->post("/cuisines", function() use ($app) {
         $cuisine = new Cuisine($_POST['cuisine_type']);
         $cuisine->save();
-        return $app['twig']->render('cuisines.html.twig', array('cuisines' => Cuisine::getAll()));
+        return $app['twig']->render('cuisines.html.twig', array('cuisines' => Cuisine::getAll(), 'cuisine' => $cuisine));
     });
+
+        $app ['debug'] = true;
 
     $app->get("/cuisines/{id}/edit", function($id) use ($app) {
         $cuisine = Cuisine::find($id);
@@ -48,7 +51,7 @@
 
     $app->patch("/cuisines/{id}", function($id) use ($app) {
         $name = $_POST['cuisine_type'];
-        $cuisine = Cuisine::find($id);
+        $cuisine = Cuisine::findCuisine($id);
         $cuisine->update($cuisine_type);
         return $app['twig']->render('cuisine.html.twig', array('cuisine' => $cuisine, 'tasks' => $cuisine->getRestaurants()));
     });

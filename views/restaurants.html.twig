@@ -1,0 +1,36 @@
+<html>
+  <head>
+      {% include '/includes/head.html.twig' %}
+  </head>
+  <body>
+    <div class="container">
+      <h1>Restaurants</h1>
+      {% if restaurants is not empty %}
+          <p>Here are all your restaurants:</p>
+          <ul>
+              {% for restaurant in restaurants %}
+                  <li>{{ restaurant.getDescription }}</li>
+              {% endfor %}
+          </ul>
+      {% endif %}
+
+      <form action='/restaurants' method='post'>
+          <label for='name'>Restaurant Name</label>
+          <input id='name' name='name' type='text'>
+
+          <label for='website'>Restaurant Website</label>
+          <input id='website' name='website' type='text'>
+
+          <label for='phone_number'>Restaurant Phone Number</label>
+          <input id='phone_number' name='phone_number' type='text'>
+
+          <button type='submit'>Add restaurant</button>
+      </form>
+      <form action='/delete_restaurants' method='post'>
+          <button type='submit'>Clear</button>
+      </form>
+
+      <p><a href='/'>Home</a></p>
+    </div>
+  </body>
+</html>
