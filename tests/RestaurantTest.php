@@ -209,7 +209,7 @@
             $this->assertEquals([$test_restaurant2], Restaurant::getAll());
         }
 
-        function test_getRestaurant()
+        function test_findRestaurant()
         {
           //Arrange
             $cuisine_type = "Peruvian";
