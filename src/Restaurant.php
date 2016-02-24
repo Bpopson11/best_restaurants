@@ -62,6 +62,19 @@ class Restaurant
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
+    static function findRestaurant($search_id)
+    {
+        $found_restaurant = null;
+        $restaurants = Restaurant::getAll();
+        foreach($restaurants as $restaurant) {
+            $restaurant_id = $restaurant->getId();
+            if ($restaurant_id == $search_id) {
+              $found_restaurant = $restaurant;
+            }
+        }
+        return $found_restaurant;
+    }
+
     function delete()
     {
         $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");

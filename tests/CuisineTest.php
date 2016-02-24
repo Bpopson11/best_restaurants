@@ -53,7 +53,6 @@
 
             //Assert
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
-
         }
 
         function test_getCuisine_type()
@@ -194,6 +193,8 @@
             //Assert
             $this->assertEquals("Novoperuvian", $test_cuisine->getCuisine_type());
         }
+
+
 
     }
 

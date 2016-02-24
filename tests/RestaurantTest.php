@@ -209,6 +209,36 @@
             $this->assertEquals([$test_restaurant2], Restaurant::getAll());
         }
 
+        function test_getRestaurant()
+        {
+          //Arrange
+            $cuisine_type = "Peruvian";
+            $id = null;
+            $test_cuisine = new Cuisine($cuisine_type, $id);
+            $test_cuisine->save();
+
+            $name = "Andina";
+            $website = "http://www.andinarestaurant.com/";
+            $phone_number = "(503)228-9535";
+            $cuisine_id = $test_cuisine->getId();
+            $test_restaurant = new Restaurant($name, $website, $phone_number,  $id, $cuisine_id);
+            $test_restaurant->save();
+
+
+            $name2 = "Las Primas";
+            $website2 = "http://www.lasprimaskitchen.com";
+            $phone_number2 = "(503)206-5790";
+            $test_restaurant2 = new Restaurant($name2, $website2, $phone_number2,  $id, $cuisine_id);
+            $test_restaurant2->save();
+
+
+            //Act
+            $result = Restaurant::findRestaurant($test_restaurant->getId());
+
+            //Assert
+            $this->assertEquals($test_restaurant, $result);
+        }
+
     }
 
 ?>
