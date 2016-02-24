@@ -67,6 +67,18 @@
             $this->assertEquals($cuisine_type, $result);
         }
 
+        function test_getId()
+        {
+            //Arrange
+            $cuisine_type = "Dog";
+            $id = 1;
+            $test_Cuisine = new Cuisine($cuisine_type, $id);
+            //Act
+            $result = $test_Cuisine->getId();
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
+        }
+
 
     }
 
