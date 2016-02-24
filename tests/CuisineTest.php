@@ -156,6 +156,23 @@
             $this->assertEquals([$test_cuisine2], Cuisine::getAll());
         }
 
+        function testUpdateCuisine()
+        {
+            //Arrange
+            $cuisine_type = "Peruvian";
+            $id = null;
+            $test_cuisine = new Cuisine($cuisine_type);
+            $test_cuisine->save();
+
+            $new_cuisine_type = "Novoperuvian";
+
+            //Act
+            $test_cuisine->updateCuisine($new_cuisine_type);
+
+            //Assert
+            $this->assertEquals("Novoperuvian", $test_cuisine->getCuisine_type());
+        }
+
     }
 
 ?>
