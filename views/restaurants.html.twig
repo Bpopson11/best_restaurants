@@ -7,17 +7,12 @@
 
       <h1>Restaurants</h1>
 
-      <!-- {% if restaurants is not empty %}
-          <p>Here are all your restaurants:</p>
-          <ul>
-              {% for restaurant in restaurants %}
-                  <li>{{ restaurant.getName }}</li>
-              {% endfor %}
-          </ul>
-      {% endif %} -->
-
       <form action='/restaurants' method='post'>
+
+          <!-- PHP seems to really hate this line of code below. It's there to hypothetically call the cuisine_id to tie it to the restaurant but we get a 'Variable "cuisine" does not exist in "restaurants.html.twig" at line 11' error if the line is included. -->
           <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
+
+          
           <label for='name'>Restaurant Name</label>
           <input id='name' name='name' type='text'>
           <br><br>
