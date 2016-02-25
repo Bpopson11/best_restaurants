@@ -4,26 +4,31 @@
   </head>
   <body>
     <div class="container">
+
       <h1>Restaurants</h1>
-      {% if restaurants is not empty %}
+
+      <!-- {% if restaurants is not empty %}
           <p>Here are all your restaurants:</p>
           <ul>
               {% for restaurant in restaurants %}
-                  <li>{{ restaurant.getDescription }}</li>
+                  <li>{{ restaurant.getName }}</li>
               {% endfor %}
           </ul>
-      {% endif %}
+      {% endif %} -->
 
       <form action='/restaurants' method='post'>
+          <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
           <label for='name'>Restaurant Name</label>
           <input id='name' name='name' type='text'>
+          <br><br>
 
           <label for='website'>Restaurant Website</label>
           <input id='website' name='website' type='text'>
+          <br><br>
 
           <label for='phone_number'>Restaurant Phone Number</label>
           <input id='phone_number' name='phone_number' type='text'>
-
+          <br><br>
           <button type='submit'>Add restaurant</button>
       </form>
       <form action='/delete_restaurants' method='post'>

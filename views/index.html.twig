@@ -9,6 +9,7 @@
     <p>Create a new cuisine type:</p>
 
     <form action="/cuisines" method="post">
+        <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
         <label for="cuisine_type">Cuisine type:</label>
         <input id="cuisine_type" name="cuisine_type" type="text">
 

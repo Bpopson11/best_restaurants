@@ -5,24 +5,17 @@
   <body>
     <div class="container">
 
-      <form action='/cuisines' method='post'>
-          <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
-          <label for='cuisine_type'>Cuisine Type</label>
-          <input id='cuisine_type' name='cuisine_type' type='text'>
-
-          <br>
-          <br>
-          <button class= 'btn btn-primary' type='submit'>Add cuisine</button>
-      </form>
-
       {% if cuisines is not empty %}
-          <p>Here are the cuisines:</p>
+          <p>Here is the cuisine:</p>
           <ul>
-              {% for cuisine in cuisines %}
                   <li>{{ cuisine.getCuisine_type }}</li>
-              {% endfor %}
           </ul>
+          {% else %}
+              <p>You haven't added any cuisines yet!</p>
       {% endif %}
+
+      <p><a href="/cuisines/{{ cuisine.getId }}/edit">Edit this cuisine</a></p>
+      <p><a href="/restaurants">Add restaurants to this cuisine</a></p>
 
       <p><a href='/'>Home</a></p>
     </div>
